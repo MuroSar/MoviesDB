@@ -78,6 +78,7 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
     implementation 'com.google.android.material:material:1.0.0'
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     ktlint "com.github.shyiko:ktlint:0.31.0"
 
     testImplementation 'junit:junit:4.12'
