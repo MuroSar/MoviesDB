@@ -1,18 +1,6 @@
-package com.sartimau.domain.entities
+package com.sartimau.data.service.response
 
-data class Movie(
-    val created_by: String,
-    val description: String,
-    val favorite_count: Int,
-    val id: String,
-    val iso_639_1: String,
-    val item_count: Int,
-    val items: List<MovieItem>,
-    val name: String,
-    val poster_path: String
-)
-
-class MovieItem(
+class Item(
     var adult: Boolean = false,
     var backdrop_path: String = "",
     var genre_ids: List<Int>? = null,

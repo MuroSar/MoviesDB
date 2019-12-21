@@ -12,12 +12,12 @@ class MovieService {
     private val api: MoviesRequestGenerator = MoviesRequestGenerator()
     private val mapper: MovieMapperService = MovieMapperService()
 
-    fun getPopularMovies(page: Int): Result<List<Movie>> {
+    fun getPopularMovies(page: Int): Result<Movie> {
         val callResponse = api.createService(MovieApi::class.java).getPopularMovies(page, API_KEY_V3)
         val response = callResponse.execute()
         if (response != null) {
             if (response.isSuccessful) {
-//                response.body()?.data?.let { mapper.transform(it) }?.let { return Result.Success(it) }
+                response.body()?.data?.movies?.get(0)?.let { mapper.transform(it) }?.let { return Result.Success(it) }
             }
             return Result.Failure(Exception(response.message()))
         }

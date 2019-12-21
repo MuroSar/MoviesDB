@@ -11,7 +11,7 @@ class MoviesRepositoryImpl(
     private val movieDatabase: MovieDatabase
 ) : MoviesRepository {
 
-    override fun getPopularMovies(page: Int): Result<List<Movie>> {
+    override fun getPopularMovies(page: Int): Result<Movie> {
         val movieResult = movieService.getPopularMovies(page)
 //        return if (movieResult is Result.Success) {
 //            insertOrUpdateCharacter(movieResult.data)
@@ -21,15 +21,15 @@ class MoviesRepositoryImpl(
 //        }
     }
 
-    override fun getTopRatedMovies(page: Int): Result<List<Movie>> {
+    override fun getTopRatedMovies(page: Int): Result<Movie> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getUpcomingMovies(page: Int): Result<List<Movie>> {
+    override fun getUpcomingMovies(page: Int): Result<Movie> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    private fun insertOrUpdateCharacter(movies: List<Movie>) {
+    private fun insertOrUpdateCharacter(movies: Movie) {
         movieDatabase.insertOrUpdateCharacter(movies)
     }
 }

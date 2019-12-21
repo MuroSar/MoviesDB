@@ -45,7 +45,7 @@ class MoviesViewModel(val movieUseCase: MovieUseCase) : ViewModel() {
     }
 }
 
-data class MoviesData<String>(var moviesStatus: MoviesStatus, var data: List<Movie>? = null, var error: Exception? = null)
+data class MoviesData<String>(var moviesStatus: MoviesStatus, var data: Movie? = null, var error: Exception? = null)
 
 enum class MoviesStatus {
     SUCCESSFUL,

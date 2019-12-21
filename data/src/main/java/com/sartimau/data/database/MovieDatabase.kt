@@ -8,16 +8,16 @@ import io.realm.Realm
 
 class MovieDatabase {
 
-    fun getMoviesByCategory(category: String): Result<List<Movie>> {
+    fun getMoviesByCategory(category: String): Result<Movie> {
         val mapper = MovieMapperLocal()
         Realm.getDefaultInstance().use {
-            val movies= it.where(MovieRealm::class.java).findAll()//.equalTo("Category", category).findAll()
+            val movies= it.where(MovieRealm::class.java).findFirst()//.equalTo("Category", category).findAll()
             movies?.let { return Result.Success(mapper.transform(movies)) }
             return Result.Failure(Exception("Character not found"))
         }
     }
 
-    fun insertOrUpdateCharacter(movies: List<Movie>) {
+    fun insertOrUpdateCharacter(movies: Movie) {
         val mapper = MovieMapperLocal()
         Realm.getDefaultInstance().use {
             it.executeTransaction { realm ->
