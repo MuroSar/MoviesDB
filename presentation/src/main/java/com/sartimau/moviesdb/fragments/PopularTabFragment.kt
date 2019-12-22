@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.sartimau.domain.entities.Movie
+import com.sartimau.domain.entities.MoviePage
 
 import com.sartimau.moviesdb.R
 import com.sartimau.moviesdb.utils.LiveDataEvent
+import com.sartimau.moviesdb.utils.NetworkUtils.isNetworkAvailable
 import com.sartimau.moviesdb.viewmodels.MoviesData
 import com.sartimau.moviesdb.viewmodels.MoviesStatus
 import com.sartimau.moviesdb.viewmodels.MoviesViewModel
@@ -27,10 +28,10 @@ class PopularTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPopularMovies()
+        viewModel.getPopularMovies(isNetworkAvailable(this.context))
     }
 
-    private fun updateUI(moviesData: LiveDataEvent<MoviesData<Movie>>) {
+    private fun updateUI(moviesData: LiveDataEvent<MoviesData<MoviePage>>) {
         // in this case, we need to use peekContent because we use this several times to update the UI
         // in case that we will only use the characterData one time we have to use getContentIfNotHandled
         when (moviesData.peekContent().moviesStatus) {

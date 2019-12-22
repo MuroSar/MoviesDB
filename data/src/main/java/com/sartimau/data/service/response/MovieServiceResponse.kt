@@ -1,13 +1,15 @@
 package com.sartimau.data.service.response
 
+import com.google.gson.annotations.SerializedName
+import com.sartimau.domain.utils.Constants.MINUS_ONE
+
 data class MovieServiceResponse(
-    val created_by: String,
-    val description: String,
-    val favorite_count: Int,
-    val id: String,
-    val iso_639_1: String,
-    val item_count: Int,
-    val items: List<Item>,
-    val name: String,
-    val poster_path: String
+    @SerializedName("page")
+    var page: Int = -1,
+    @SerializedName("results")
+    var results: List<MovieItemService> = ArrayList(),
+    @SerializedName("total_pages")
+    var totalPages: Int = MINUS_ONE,
+    @SerializedName("total_results")
+    var totalResults: Int = MINUS_ONE
 )

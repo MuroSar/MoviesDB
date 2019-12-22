@@ -9,11 +9,11 @@ import org.koin.core.inject
 class MovieUseCase: KoinComponent {
     private val moviesRepository: MoviesRepository by inject()
 
-    operator fun invoke(page: Int, category: String) = when(category) {
-        CATEGORY_POPULAR -> moviesRepository.getPopularMovies(page)
-        CATEGORY_TOP_RATED -> moviesRepository.getTopRatedMovies(page)
+    operator fun invoke(page: Int, category: String, networkAvailable: Boolean) = when(category) {
+        CATEGORY_POPULAR -> moviesRepository.getPopularMovies(page, networkAvailable)
+        CATEGORY_TOP_RATED -> moviesRepository.getTopRatedMovies(page, networkAvailable)
 //        CATEGORY_UPCOMING -> moviesRepository.getUpcomingMovies(page)
-        else -> moviesRepository.getUpcomingMovies(page)
+        else -> moviesRepository.getUpcomingMovies(page, networkAvailable)
     }
 
 }

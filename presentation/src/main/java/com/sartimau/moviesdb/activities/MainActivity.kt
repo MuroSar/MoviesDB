@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 loader.visibility = View.VISIBLE
             }
             LoaderStatus.HIDE -> {
-                loader.visibility = View.INVISIBLE
+                loader.visibility = View.GONE
             }
         }
     }

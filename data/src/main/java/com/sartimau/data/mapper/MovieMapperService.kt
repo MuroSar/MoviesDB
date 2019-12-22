@@ -1,88 +1,77 @@
 package com.sartimau.data.mapper
 
-import com.sartimau.data.service.response.Item
+import com.sartimau.data.service.response.MovieItemService
 import com.sartimau.data.service.response.MovieServiceResponse
-import com.sartimau.domain.entities.Movie
 import com.sartimau.domain.entities.MovieItem
+import com.sartimau.domain.entities.MoviePage
+import com.sartimau.domain.utils.Constants.EMPTY_STRING
 
-open class MovieMapperService : BaseMapperRepository<MovieServiceResponse, Movie> {
+open class MovieMapperService : BaseMapperRepository<MovieServiceResponse, MoviePage> {
 
-    override fun transform(response: MovieServiceResponse): Movie {
-        return Movie(
-            response.created_by,
-            response.description,
-            response.favorite_count,
-            response.id,
-            response.iso_639_1,
-            response.item_count,
-            transformMovieItem(response.items),
-            response.name,
-            response.poster_path
+    override fun transform(response: MovieServiceResponse): MoviePage {
+        return MoviePage(
+            EMPTY_STRING,
+            response.page,
+            transformMovieItem(response.results),
+            response.totalPages,
+            response.totalResults,
+            EMPTY_STRING
         )
     }
 
-    private fun transformMovieItem(items: List<Item>): List<MovieItem> {
+    private fun transformMovieItem(items: List<MovieItemService>): List<MovieItem> {
         val movies = ArrayList<MovieItem>()
         items.forEach {
             movies.add(
                 MovieItem(
                     it.adult,
-                    it.backdrop_path,
-                    it.genre_ids,
+                    it.backdropPath ?: EMPTY_STRING,
+                    it.genreIds,
                     it.id,
-                    it.media_type,
-                    it.original_language,
-                    it.original_title,
+                    it.originalLanguage,
+                    it.originalTitle,
                     it.overview,
                     it.popularity,
-                    it.poster_path,
-                    it.release_date,
+                    it.posterPath,
+                    it.releaseDate,
                     it.title,
                     it.video,
-                    it.vote_average,
-                    it.vote_count,
-                    it.category
+                    it.voteAverage,
+                    it.voteCount
                 )
             )
         }
         return movies
     }
 
-    override fun transformToRepository(movie: Movie): MovieServiceResponse {
+    override fun transformToRepository(movie: MoviePage): MovieServiceResponse {
         return MovieServiceResponse(
-            movie.created_by,
-            movie.description,
-            movie.favorite_count,
-            movie.id,
-            movie.iso_639_1,
-            movie.item_count,
-            transformMovieItemToRepository(movie.items),
-            movie.name,
-            movie.poster_path
+            movie.page,
+            transformMovieItemToRepository(movie.results),
+            movie.totalPages,
+            movie.totalResults
         )
     }
 
-    private fun transformMovieItemToRepository(items: List<MovieItem>): List<Item> {
-        val movies = ArrayList<Item>()
+    private fun transformMovieItemToRepository(items: List<MovieItem>): List<MovieItemService> {
+        val movies = ArrayList<MovieItemService>()
         items.forEach {
             movies.add(
-                Item(
+                MovieItemService(
                     it.adult,
-                    it.backdrop_path,
-                    it.genre_ids,
+                    it.backdropPath,
+                    it.genreIds,
                     it.id,
-                    it.media_type,
-                    it.original_language,
-                    it.original_title,
+                    it.originalLanguage,
+                    it.originalTitle,
                     it.overview,
                     it.popularity,
-                    it.poster_path,
-                    it.release_date,
+                    it.posterPath,
+                    it.releaseDate,
                     it.title,
                     it.video,
-                    it.vote_average,
-                    it.vote_count,
-                    it.category
+                    it.voteAverage,
+                    it.voteCount
                 )
             )
         }

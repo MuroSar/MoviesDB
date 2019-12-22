@@ -1,24 +1,21 @@
 package com.sartimau.data.mapper
 
 import com.sartimau.data.database.entity.MovieItemRealm
-import com.sartimau.data.database.entity.MovieRealm
-import com.sartimau.domain.entities.Movie
+import com.sartimau.data.database.entity.MoviePageRealm
 import com.sartimau.domain.entities.MovieItem
+import com.sartimau.domain.entities.MoviePage
 import io.realm.RealmList
 
-class MovieMapperLocal : BaseMapperRepository<MovieRealm, Movie> {
+class MovieMapperLocal : BaseMapperRepository<MoviePageRealm, MoviePage> {
 
-    override fun transform(entitie: MovieRealm): Movie {
-        return Movie(
-            entitie.created_by,
-            entitie.description,
-            entitie.favorite_count,
+    override fun transform(entitie: MoviePageRealm): MoviePage {
+        return MoviePage(
             entitie.id,
-            entitie.iso_639_1,
-            entitie.item_count,
-            transformMovieItem(entitie.items),
-            entitie.name,
-            entitie.poster_path
+            entitie.page,
+            transformMovieItem(entitie.results),
+            entitie.totalPages,
+            entitie.totalResults,
+            entitie.category
         )
     }
 
@@ -28,21 +25,19 @@ class MovieMapperLocal : BaseMapperRepository<MovieRealm, Movie> {
             movies.add(
                 MovieItem(
                     it.adult,
-                    it.backdrop_path,
-                    transformGenreIds(it.genre_ids),
+                    it.backdropPath,
+                    transformGenreIds(it.genreIds),
                     it.id,
-                    it.media_type,
-                    it.original_language,
-                    it.original_title,
+                    it.originalLanguage,
+                    it.originalTitle,
                     it.overview,
                     it.popularity,
-                    it.poster_path,
-                    it.release_date,
+                    it.posterPath,
+                    it.releaseDate,
                     it.title,
                     it.video,
-                    it.vote_average,
-                    it.vote_count,
-                    it.category
+                    it.voteAverage,
+                    it.voteCount
                 )
             )
         }
@@ -57,17 +52,14 @@ class MovieMapperLocal : BaseMapperRepository<MovieRealm, Movie> {
         return result
     }
 
-    override fun transformToRepository(movie: Movie): MovieRealm {
-        return MovieRealm(
-            movie.id,
-            movie.created_by,
-            movie.description,
-            movie.favorite_count,
-            movie.iso_639_1,
-            movie.item_count,
-            transformMovieItemToRepository(movie.items),
-            movie.name,
-            movie.poster_path
+    override fun transformToRepository(moviePage: MoviePage): MoviePageRealm {
+        return MoviePageRealm(
+            moviePage.id,
+            moviePage.page,
+            transformMovieItemToRepository(moviePage.results),
+            moviePage.totalPages,
+            moviePage.totalResults,
+            moviePage.category
         )
     }
 
@@ -78,20 +70,18 @@ class MovieMapperLocal : BaseMapperRepository<MovieRealm, Movie> {
                 MovieItemRealm(
                     it.id,
                     it.adult,
-                    it.backdrop_path,
-                    transformGenreIdsToRepository(it.genre_ids),
-                    it.media_type,
-                    it.original_language,
-                    it.original_title,
+                    it.backdropPath,
+                    transformGenreIdsToRepository(it.genreIds),
+                    it.originalLanguage,
+                    it.originalTitle,
                     it.overview,
                     it.popularity,
-                    it.poster_path,
-                    it.release_date,
+                    it.posterPath,
+                    it.releaseDate,
                     it.title,
                     it.video,
-                    it.vote_average,
-                    it.vote_count,
-                    it.category
+                    it.voteAverage,
+                    it.voteCount
                 )
             )
         }

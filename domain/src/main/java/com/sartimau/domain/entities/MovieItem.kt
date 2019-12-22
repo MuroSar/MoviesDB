@@ -1,18 +1,14 @@
-package com.sartimau.data.database.entity
+package com.sartimau.domain.entities
 
 import com.sartimau.domain.utils.Constants.EMPTY_STRING
 import com.sartimau.domain.utils.Constants.ZERO_FLOAT
 import com.sartimau.domain.utils.Constants.ZERO_INT
-import io.realm.RealmList
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
 
-open class MovieItemRealm(
-    @PrimaryKey
-    var id: Int = ZERO_INT,
+data class MovieItem(
     var adult: Boolean = false,
     var backdropPath: String = EMPTY_STRING,
-    var genreIds: RealmList<Int>? = null,
+    var genreIds: List<Int>? = null,
+    var id: Int = ZERO_INT,
     var originalLanguage: String = EMPTY_STRING,
     var originalTitle: String = EMPTY_STRING,
     var overview: String = EMPTY_STRING,
@@ -23,4 +19,4 @@ open class MovieItemRealm(
     var video: Boolean = false,
     var voteAverage: Double = ZERO_FLOAT,
     var voteCount: Int = ZERO_INT
-) : RealmObject()
+)

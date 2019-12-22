@@ -1,6 +1,7 @@
 package com.sartimau.data
 
 import android.util.Log
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -45,7 +46,7 @@ class MoviesRequestGenerator {
             }
 
             response
-        }
+        }.addNetworkInterceptor(StethoInterceptor())
 
     private val builder = Retrofit.Builder()
         .baseUrl(BASE_URL)

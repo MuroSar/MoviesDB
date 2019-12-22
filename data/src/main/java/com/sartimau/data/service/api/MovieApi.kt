@@ -1,7 +1,5 @@
 package com.sartimau.data.service.api
 
-import com.sartimau.data.database.response.DataBaseResponse
-import com.sartimau.data.service.response.MovieBaseResponse
 import com.sartimau.data.service.response.MovieServiceResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -15,23 +13,23 @@ interface MovieApi {
         @Path("list_id") listID: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String
-    ): Call<MovieBaseResponse<DataBaseResponse<MovieServiceResponse>>>
+    ): Call<MovieServiceResponse>
 
     @GET("movie/popular/")
     fun getPopularMovies(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String
-    ): Call<MovieBaseResponse<DataBaseResponse<MovieServiceResponse>>>
+    ): Call<MovieServiceResponse>
 
     @GET("movie/top_rated/")
     fun getTopRatedMovies(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String
-    ): Call<MovieBaseResponse<DataBaseResponse<MovieServiceResponse>>>
+    ): Call<MovieServiceResponse>
 
     @GET("movie/upcoming/")
     fun getUpcomingMovies(
         @Query("page") page: Int,
         @Query("api_key") apiKey: String
-    ): Call<MovieBaseResponse<DataBaseResponse<MovieServiceResponse>>>
+    ): Call<MovieServiceResponse>
 }
