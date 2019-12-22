@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sartimau.domain.entities.MoviePage
-import com.sartimau.domain.usecases.MovieUseCase
+import com.sartimau.domain.usecases.GetMovieUseCase
 import com.sartimau.domain.utils.Constants.CATEGORY_POPULAR
 import com.sartimau.moviesdb.utils.LiveDataEvent
 import com.sartimau.domain.utils.Result
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
-class MoviesViewModel(val movieUseCase: MovieUseCase) : ViewModel() {
+class MoviesViewModel(val getMovieUseCase: GetMovieUseCase) : ViewModel() {
 
     private var mutableLoaderState: MutableLiveData<LiveDataEvent<LoaderData>> = MutableLiveData()
     val loaderState: LiveData<LiveDataEvent<LoaderData>>
@@ -31,7 +31,7 @@ class MoviesViewModel(val movieUseCase: MovieUseCase) : ViewModel() {
     fun getPopularMovies(networkAvailable: Boolean) {
         viewModelScope.launch {
             mutableLoaderState.value = LiveDataEvent(LoaderData(LoaderStatus.SHOW))
-            when (val result = withContext(Dispatchers.IO) { movieUseCase(1, CATEGORY_POPULAR, networkAvailable) }) {
+            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(1, CATEGORY_POPULAR, networkAvailable) }) {
                 is Result.Failure -> {
                     mutableLoaderState.postValue(LiveDataEvent(LoaderData(LoaderStatus.HIDE)))
                     mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR, error = result.exception)))

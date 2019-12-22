@@ -5,7 +5,7 @@ import com.sartimau.domain.utils.Constants.MINUS_ONE
 
 data class MovieServiceResponse(
     @SerializedName("page")
-    var page: Int = -1,
+    var page: Int = MINUS_ONE,
     @SerializedName("results")
     var results: List<MovieItemService> = ArrayList(),
     @SerializedName("total_pages")

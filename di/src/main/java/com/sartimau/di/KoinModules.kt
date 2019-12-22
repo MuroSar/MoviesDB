@@ -4,7 +4,7 @@ import com.sartimau.data.database.MovieDatabase
 import com.sartimau.data.repositories.MoviesRepositoryImpl
 import com.sartimau.data.service.MovieService
 import com.sartimau.domain.repositories.MoviesRepository
-import com.sartimau.domain.usecases.MovieUseCase
+import com.sartimau.domain.usecases.GetMovieUseCase
 import org.koin.dsl.module
 
 val repositoriesModule = module {
@@ -14,5 +14,5 @@ val repositoriesModule = module {
 }
 
 val useCasesModule = module {
-    single { MovieUseCase() }
+    single { GetMovieUseCase() }
 }

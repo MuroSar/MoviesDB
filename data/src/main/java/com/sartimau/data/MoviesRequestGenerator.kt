@@ -20,11 +20,7 @@ class MoviesRequestGenerator {
 
             val defaultHttpUrl = defaultRequest.url()
 
-            val httpUrl = defaultHttpUrl.newBuilder()
-//                .addQueryParameter(PUBLIC_API_KEY_ARG, PRIVATE_API_KEY_ARG_VALUE)
-//                .addQueryParameter(PRIVATE_API_KEY_ARG, PUBLIC_API_KEY_ARG_VALUE)
-//                .addQueryParameter(TS, TS_VALUE)
-                .build()
+            val httpUrl = defaultHttpUrl.newBuilder().build()
 
             val requestBuilder = defaultRequest.newBuilder()
                 .url(httpUrl)

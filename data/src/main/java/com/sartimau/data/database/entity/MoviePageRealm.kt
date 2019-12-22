@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey
 open class MoviePageRealm(
     @PrimaryKey
     var id: String = EMPTY_STRING,
-    var page: Int = -1,
+    var page: Int = MINUS_ONE,
     var results: RealmList<MovieItemRealm>? = null,
     var totalPages: Int = MINUS_ONE,
     var totalResults: Int = MINUS_ONE,

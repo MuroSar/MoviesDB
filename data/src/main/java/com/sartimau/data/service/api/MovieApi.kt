@@ -8,6 +8,7 @@ import retrofit2.http.Query
 
 interface MovieApi {
 
+    // TODO remove this if it is not necessary
     @GET("list/{list_id}")
     fun getMovies(
         @Path("list_id") listID: Int,
