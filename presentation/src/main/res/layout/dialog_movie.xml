@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dialog_padding"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/dialog_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/adult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_adult"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/adult_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/adult"
+            app:layout_constraintTop_toTopOf="@id/adult"
+            tools:text="Adult Info" />
+
+        <TextView
+            android:id="@+id/genre_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_genre_ids"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adult_info" />
+
+        <TextView
+            android:id="@+id/genre_id_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/genre_id"
+            app:layout_constraintTop_toTopOf="@id/genre_id"
+            tools:text="IDs info" />
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_id"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/genre_id_info" />
+
+        <TextView
+            android:id="@+id/id_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/id"
+            app:layout_constraintTop_toTopOf="@id/id"
+            tools:text="ID info" />
+
+        <TextView
+            android:id="@+id/original_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_original_language"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/id_info" />
+
+        <TextView
+            android:id="@+id/original_language_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/original_language"
+            app:layout_constraintTop_toTopOf="@id/original_language"
+            tools:text="Original language info" />
+
+        <TextView
+            android:id="@+id/original_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_original_title"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/original_language_info" />
+
+        <TextView
+            android:id="@+id/original_title_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/original_title"
+            app:layout_constraintTop_toTopOf="@id/original_title"
+            tools:text="Original title info" />
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_overview"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/original_title_info" />
+
+        <TextView
+            android:id="@+id/overview_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/overview"
+            app:layout_constraintTop_toTopOf="@id/overview"
+            tools:text="Overview infoOverview infoOverview infoOverview infoOverview infoOverview infoOverview info" />
+
+        <TextView
+            android:id="@+id/popularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_popularity"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/overview_info" />
+
+        <TextView
+            android:id="@+id/popularity_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/popularity"
+            app:layout_constraintTop_toTopOf="@id/popularity"
+            tools:text="Popularity info" />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_release_date"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popularity_info" />
+
+        <TextView
+            android:id="@+id/release_date_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/release_date"
+            app:layout_constraintTop_toTopOf="@id/release_date"
+            tools:text="Release date info" />
+
+        <TextView
+            android:id="@+id/video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_video"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/release_date_info" />
+
+        <TextView
+            android:id="@+id/video_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/video"
+            app:layout_constraintTop_toTopOf="@id/video"
+            tools:text="Video info" />
+
+        <TextView
+            android:id="@+id/vote_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_vote_average"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/video_info" />
+
+        <TextView
+            android:id="@+id/vote_average_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vote_average"
+            app:layout_constraintTop_toTopOf="@id/vote_average"
+            tools:text="Vote average info" />
+
+        <TextView
+            android:id="@+id/vote_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_vote_count"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vote_average_info" />
+
+        <TextView
+            android:id="@+id/vote_count_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vote_count"
+            app:layout_constraintTop_toTopOf="@id/vote_count"
+            tools:text="Vote count info" />
+
+        <TextView
+            android:id="@+id/poster_path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_poster_path"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vote_count_info" />
+
+        <TextView
+            android:id="@+id/poster_path_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/poster_path"
+            app:layout_constraintTop_toTopOf="@id/poster_path"
+            tools:text="Poster path info" />
+
+        <ImageView
+            android:id="@+id/image_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dialog_image_margin_top"
+            android:src="@drawable/movie_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/poster_path_info" />
+
+        <TextView
+            android:id="@+id/backdrop_path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dialog_image_margin_top"
+            android:text="@string/title_backdrop_path"
+            android:textSize="@dimen/dialog_general_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_poster" />
+
+        <TextView
+            android:id="@+id/backdrop_path_info"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dialog_text_info_margin_start"
+            android:textSize="@dimen/dialog_general_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/backdrop_path"
+            app:layout_constraintTop_toTopOf="@id/backdrop_path"
+            tools:text="Backdrop path info" />
+
+        <ImageView
+            android:id="@+id/image_backdrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dialog_image_margin_top"
+            android:src="@drawable/movie_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backdrop_path_info" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

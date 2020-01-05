@@ -5,15 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sartimau.domain.entities.MoviePage
 
 import com.sartimau.moviesdb.R
+import com.sartimau.moviesdb.adapters.MoviesAdapter
 import com.sartimau.moviesdb.utils.LiveDataEvent
 import com.sartimau.moviesdb.utils.NetworkUtils.isNetworkAvailable
+import com.sartimau.moviesdb.utils.showMovieDialog
+import com.sartimau.moviesdb.utils.showNotificationDialog
 import com.sartimau.moviesdb.viewmodels.MoviesData
 import com.sartimau.moviesdb.viewmodels.MoviesStatus
 import com.sartimau.moviesdb.viewmodels.MoviesViewModel
+import kotlinx.android.synthetic.main.fragment_popular_tab.recycler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PopularTabFragment : Fragment() {
@@ -36,10 +40,15 @@ class PopularTabFragment : Fragment() {
         // in case that we will only use the characterData one time we have to use getContentIfNotHandled
         when (moviesData.peekContent().moviesStatus) {
             MoviesStatus.SUCCESSFUL -> {
-                Toast.makeText(activity, "SUCCESSFUL", Toast.LENGTH_SHORT).show()
+                moviesData.peekContent().data?.results?.let {
+                    recycler.adapter = MoviesAdapter(it) { character -> showMovieDialog(this, character) }
+                    recycler.layoutManager = LinearLayoutManager(this.context)
+                }
             }
             MoviesStatus.ERROR -> {
-                Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show()
+                moviesData.peekContent().error?.message?.let {
+                    showNotificationDialog(this, getString(R.string.error), it)
+                }
             }
         }
     }
