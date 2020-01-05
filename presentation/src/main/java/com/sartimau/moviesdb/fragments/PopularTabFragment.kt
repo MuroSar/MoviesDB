@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sartimau.domain.entities.MoviePage
 
@@ -14,6 +13,7 @@ import com.sartimau.moviesdb.adapters.MoviesAdapter
 import com.sartimau.moviesdb.utils.LiveDataEvent
 import com.sartimau.moviesdb.utils.NetworkUtils.isNetworkAvailable
 import com.sartimau.moviesdb.utils.showMovieDialog
+import com.sartimau.moviesdb.utils.showNotificationDialog
 import com.sartimau.moviesdb.viewmodels.MoviesData
 import com.sartimau.moviesdb.viewmodels.MoviesStatus
 import com.sartimau.moviesdb.viewmodels.MoviesViewModel
@@ -46,7 +46,9 @@ class PopularTabFragment : Fragment() {
                 }
             }
             MoviesStatus.ERROR -> {
-                Toast.makeText(activity, "ERROR", Toast.LENGTH_SHORT).show()
+                moviesData.peekContent().error?.message?.let {
+                    showNotificationDialog(this, getString(R.string.error), it)
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.sartimau.moviesdb.utils
 
 import android.app.AlertDialog
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -49,4 +50,23 @@ fun showMovieDialog(fragment: Fragment, movie: MovieItem) {
     val dialog = builder.create()
     dialog.setCancelable(true)
     dialog.show()
+}
+
+fun showNotificationDialog(fragment: Fragment, title: String, content: String) {
+    val builder = AlertDialog.Builder(fragment.context)
+    val view = fragment.layoutInflater.inflate(R.layout.dialog_notification, null)
+
+    val notificationTitle = view.findViewById<TextView>(R.id.notification_title)
+    val notificationContent = view.findViewById<TextView>(R.id.notification_content)
+    val notificationButton = view.findViewById<Button>(R.id.notification_button)
+
+    notificationTitle.text = title
+    notificationContent.text = content
+
+    builder.setView(view)
+    val dialog = builder.create()
+    dialog.setCancelable(true)
+    dialog.show()
+
+    notificationButton.setOnClickListener { dialog.dismiss() }
 }

@@ -14,5 +14,7 @@
     <string name="title_vote_count">Vote count:</string>
     <string name="title_poster_path">Poster path:</string>
     <string name="title_backdrop_path">Backdrop path:</string>
+    <string name="ok">Ok</string>
+    <string name="error">Error</string>
 
 </resources>
