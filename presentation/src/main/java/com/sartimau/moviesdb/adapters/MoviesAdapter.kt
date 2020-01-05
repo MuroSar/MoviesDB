@@ -3,17 +3,15 @@ package com.sartimau.moviesdb.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.sartimau.domain.entities.MovieItem
 import com.sartimau.moviesdb.R
-import com.squareup.picasso.Picasso
+import com.sartimau.moviesdb.utils.BASE_MOVIE_URL
+import com.sartimau.moviesdb.utils.getImageByUrl
 import kotlinx.android.synthetic.main.item_movie.view.movieAverageVotes
 import kotlinx.android.synthetic.main.item_movie.view.movieImage
 import kotlinx.android.synthetic.main.item_movie.view.movieOverview
 import kotlinx.android.synthetic.main.item_movie.view.movieTitle
-
-private const val BASE_MOVIE_URL = "https://image.tmdb.org/t/p/w500/"
 
 class MoviesAdapter(private val movies: List<MovieItem> = emptyList(), private val listener: MovieListener) :
     RecyclerView.Adapter<MoviesAdapterViewHolder>() {
@@ -44,12 +42,3 @@ class MoviesAdapterViewHolder(view: View, val listener: MovieListener) : Recycle
 }
 
 typealias MovieListener = (MovieItem) -> Unit
-
-fun ImageView.getImageByUrl(url: String) {
-    Picasso.with(context)
-        .load(url)
-        .placeholder(R.drawable.movie_placeholder)
-        .fit()
-        .centerCrop()
-        .into(this)
-}

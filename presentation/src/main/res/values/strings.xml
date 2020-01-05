@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Movies DB</string>
 
+    <string name="title_adult">Adult:</string>
+    <string name="title_genre_ids">Genre IDs:</string>
+    <string name="title_id">ID:</string>
+    <string name="title_original_language">Original language:</string>
+    <string name="title_original_title">Original title:</string>
+    <string name="title_overview">Overview:</string>
+    <string name="title_popularity">Popularity:</string>
+    <string name="title_release_date">Release date:</string>
+    <string name="title_video">Video:</string>
+    <string name="title_vote_average">Vote average:</string>
+    <string name="title_vote_count">Vote count:</string>
+    <string name="title_poster_path">Poster path:</string>
+    <string name="title_backdrop_path">Backdrop path:</string>
+
 </resources>

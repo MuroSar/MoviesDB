@@ -13,6 +13,7 @@ import com.sartimau.moviesdb.R
 import com.sartimau.moviesdb.adapters.MoviesAdapter
 import com.sartimau.moviesdb.utils.LiveDataEvent
 import com.sartimau.moviesdb.utils.NetworkUtils.isNetworkAvailable
+import com.sartimau.moviesdb.utils.showMovieDialog
 import com.sartimau.moviesdb.viewmodels.MoviesData
 import com.sartimau.moviesdb.viewmodels.MoviesStatus
 import com.sartimau.moviesdb.viewmodels.MoviesViewModel
@@ -40,7 +41,7 @@ class PopularTabFragment : Fragment() {
         when (moviesData.peekContent().moviesStatus) {
             MoviesStatus.SUCCESSFUL -> {
                 moviesData.peekContent().data?.results?.let {
-                    recycler.adapter = MoviesAdapter(it) { character -> /*showFragmentDialog(character)*/ }
+                    recycler.adapter = MoviesAdapter(it) { character -> showMovieDialog(this, character) }
                     recycler.layoutManager = LinearLayoutManager(this.context)
                 }
             }
