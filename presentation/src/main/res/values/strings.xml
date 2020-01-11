@@ -16,5 +16,6 @@
     <string name="title_backdrop_path">Backdrop path:</string>
     <string name="ok">Ok</string>
     <string name="error">Error</string>
+    <string name="error_next_page">Sorry, we had an error getting the next movies page.</string>
 
 </resources>

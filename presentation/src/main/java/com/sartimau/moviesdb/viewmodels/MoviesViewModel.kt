@@ -28,17 +28,30 @@ class MoviesViewModel(val getMovieUseCase: GetMovieUseCase) : ViewModel() {
             return mutableMainState
         }
 
-    fun getPopularMovies(networkAvailable: Boolean) {
+    fun getPopularMovies(networkAvailable: Boolean, page: Int) {
         viewModelScope.launch {
             mutableLoaderState.value = LiveDataEvent(LoaderData(LoaderStatus.SHOW))
-            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(1, CATEGORY_POPULAR, networkAvailable) }) {
+            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(page, CATEGORY_POPULAR, networkAvailable) }) {
                 is Result.Failure -> {
                     mutableLoaderState.postValue(LiveDataEvent(LoaderData(LoaderStatus.HIDE)))
-                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR, error = result.exception)))
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR_FIRST_PAGE, error = result.exception)))
                 }
                 is Result.Success -> {
                     mutableLoaderState.postValue(LiveDataEvent(LoaderData(LoaderStatus.HIDE)))
-                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.SUCCESSFUL, data = result.data)))
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.SUCCESSFUL_FIRST_PAGE, data = result.data)))
+                }
+            }
+        }
+    }
+
+    fun getPopularMoviesNextPage(networkAvailable: Boolean, page: Int) {
+        viewModelScope.launch {
+            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(page, CATEGORY_POPULAR, networkAvailable) }) {
+                is Result.Failure -> {
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR_NEXT_PAGE, error = result.exception)))
+                }
+                is Result.Success -> {
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.SUCCESSFUL_NEXT_PAGE, data = result.data)))
                 }
             }
         }
@@ -48,8 +61,10 @@ class MoviesViewModel(val getMovieUseCase: GetMovieUseCase) : ViewModel() {
 data class MoviesData<MoviePage>(var moviesStatus: MoviesStatus, var data: MoviePage? = null, var error: Exception? = null)
 
 enum class MoviesStatus {
-    SUCCESSFUL,
-    ERROR
+    SUCCESSFUL_FIRST_PAGE,
+    ERROR_FIRST_PAGE,
+    SUCCESSFUL_NEXT_PAGE,
+    ERROR_NEXT_PAGE
 }
 
 data class LoaderData(var loaderStatus: LoaderStatus)

@@ -11,4 +11,7 @@ object Constants {
 
     const val ZERO_INT = 0
     const val MINUS_ONE = -1
+
+    const val TOTAL_POPULAR_PAGES = 500
+    const val TOTAL_POPULAR_MOVIES_BY_PAGE = 20
 }
