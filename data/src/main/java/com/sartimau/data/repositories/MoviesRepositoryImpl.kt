@@ -6,6 +6,7 @@ import com.sartimau.domain.entities.MoviePage
 import com.sartimau.domain.repositories.MoviesRepository
 import com.sartimau.domain.utils.Constants.CATEGORY_POPULAR
 import com.sartimau.domain.utils.Constants.CATEGORY_TOP_RATED
+import com.sartimau.domain.utils.Constants.CATEGORY_UPCOMING
 import com.sartimau.domain.utils.Result
 
 class MoviesRepositoryImpl(
@@ -42,7 +43,17 @@ class MoviesRepositoryImpl(
     }
 
     override fun getUpcomingMovies(page: Int, networkAvailable: Boolean): Result<MoviePage> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return if (networkAvailable) {
+            val movieResult = movieService.getUpcomingMovies(page)
+            if (movieResult is Result.Success) {
+                insertOrUpdateMovie(movieResult.data)
+                movieResult
+            } else {
+                movieDatabase.getMoviesByPageAndCategory(page, CATEGORY_UPCOMING)
+            }
+        } else {
+            movieDatabase.getMoviesByPageAndCategory(page, CATEGORY_UPCOMING)
+        }
     }
 
     private fun insertOrUpdateMovie(moviePage: MoviePage) {

@@ -23,7 +23,7 @@ class MovieItemService(
     @SerializedName("popularity")
     var popularity: Double = ZERO_FLOAT,
     @SerializedName("poster_path")
-    var posterPath: String = EMPTY_STRING,
+    var posterPath: String? = EMPTY_STRING,
     @SerializedName("release_date")
     var releaseDate: String = EMPTY_STRING,
     @SerializedName("title")

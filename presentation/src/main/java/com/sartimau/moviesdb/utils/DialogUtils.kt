@@ -42,9 +42,13 @@ fun showMovieDialog(fragment: Fragment, movie: MovieItem) {
     voteAverage.text = movie.voteAverage.toString()
     voteCount.text = movie.voteCount.toString()
     posterPath.text = movie.posterPath
-    imagePoster.getImageByUrl("$BASE_MOVIE_URL${movie.posterPath}")
+    if (movie.posterPath.isNotEmpty()) {
+        imagePoster.getImageByUrl("$BASE_MOVIE_URL${movie.posterPath}")
+    }
     backdropPath.text = movie.backdropPath
-    imageBackdrop.getImageByUrl("$BASE_MOVIE_URL${movie.backdropPath}")
+    if (movie.backdropPath.isNotEmpty()) {
+        imageBackdrop.getImageByUrl("$BASE_MOVIE_URL${movie.backdropPath}")
+    }
 
     builder.setView(view)
     val dialog = builder.create()
