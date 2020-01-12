@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sartimau.domain.entities.MoviePage
 import com.sartimau.domain.usecases.GetMovieUseCase
 import com.sartimau.domain.utils.Constants.CATEGORY_POPULAR
+import com.sartimau.domain.utils.Constants.CATEGORY_TOP_RATED
 import com.sartimau.moviesdb.utils.LiveDataEvent
 import com.sartimau.domain.utils.Result
 import kotlinx.coroutines.Dispatchers
@@ -47,6 +48,35 @@ class MoviesViewModel(val getMovieUseCase: GetMovieUseCase) : ViewModel() {
     fun getPopularMoviesNextPage(networkAvailable: Boolean, page: Int) {
         viewModelScope.launch {
             when (val result = withContext(Dispatchers.IO) { getMovieUseCase(page, CATEGORY_POPULAR, networkAvailable) }) {
+                is Result.Failure -> {
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR_NEXT_PAGE, error = result.exception)))
+                }
+                is Result.Success -> {
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.SUCCESSFUL_NEXT_PAGE, data = result.data)))
+                }
+            }
+        }
+    }
+
+    fun getTopRatedMovies(networkAvailable: Boolean, page: Int) {
+        viewModelScope.launch {
+            mutableLoaderState.value = LiveDataEvent(LoaderData(LoaderStatus.SHOW))
+            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(page, CATEGORY_TOP_RATED, networkAvailable) }) {
+                is Result.Failure -> {
+                    mutableLoaderState.postValue(LiveDataEvent(LoaderData(LoaderStatus.HIDE)))
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR_FIRST_PAGE, error = result.exception)))
+                }
+                is Result.Success -> {
+                    mutableLoaderState.postValue(LiveDataEvent(LoaderData(LoaderStatus.HIDE)))
+                    mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.SUCCESSFUL_FIRST_PAGE, data = result.data)))
+                }
+            }
+        }
+    }
+
+    fun getTopRatedMoviesNextPage(networkAvailable: Boolean, page: Int) {
+        viewModelScope.launch {
+            when (val result = withContext(Dispatchers.IO) { getMovieUseCase(page, CATEGORY_TOP_RATED, networkAvailable) }) {
                 is Result.Failure -> {
                     mutableMainState.postValue(LiveDataEvent(MoviesData(moviesStatus = MoviesStatus.ERROR_NEXT_PAGE, error = result.exception)))
                 }

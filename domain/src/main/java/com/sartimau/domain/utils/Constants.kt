@@ -14,4 +14,7 @@ object Constants {
 
     const val TOTAL_POPULAR_PAGES = 500
     const val TOTAL_POPULAR_MOVIES_BY_PAGE = 20
+
+    const val TOTAL_TOP_RATED_PAGES = 500
+    const val TOTAL_TOP_RATED_MOVIES_BY_PAGE = 20
 }
