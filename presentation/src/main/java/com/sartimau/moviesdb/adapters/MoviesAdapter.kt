@@ -71,7 +71,9 @@ class MoviesAdapter(private val movies: MutableList<MovieItem>, private val list
 class MoviesAdapterViewHolder(view: View, val listener: MovieListener) : RecyclerView.ViewHolder(view) {
 
     fun bind(movie: MovieItem) = with(itemView) {
-        movieImage.getImageByUrl("$BASE_MOVIE_URL${movie.posterPath}")
+        if (movie.posterPath.isNotEmpty()) {
+            movieImage.getImageByUrl("$BASE_MOVIE_URL${movie.posterPath}")
+        }
 
         movieTitle.text = movie.title
         movieOverview.text = movie.overview

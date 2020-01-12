@@ -32,7 +32,7 @@ open class MovieMapperService : BaseMapperRepository<MovieServiceResponse, Movie
                     it.originalTitle,
                     it.overview,
                     it.popularity,
-                    it.posterPath,
+                    it.posterPath ?: EMPTY_STRING,
                     it.releaseDate,
                     it.title,
                     it.video,
