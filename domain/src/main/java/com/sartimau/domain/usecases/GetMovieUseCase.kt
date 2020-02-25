@@ -8,10 +8,10 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.lang.IllegalArgumentException
 
-open class GetMovieUseCase : KoinComponent {
+class GetMovieUseCase : KoinComponent {
     private val moviesRepository: MoviesRepository by inject()
 
-    open operator fun invoke(page: Int, category: String, networkAvailable: Boolean) =
+    operator fun invoke(page: Int, category: String, networkAvailable: Boolean) =
         when (category) {
             CATEGORY_POPULAR -> moviesRepository.getPopularMovies(page, networkAvailable)
             CATEGORY_TOP_RATED -> moviesRepository.getTopRatedMovies(page, networkAvailable)
