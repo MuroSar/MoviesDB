@@ -18,5 +18,4 @@ class GetMovieUseCase : KoinComponent {
             CATEGORY_UPCOMING -> moviesRepository.getUpcomingMovies(page, networkAvailable)
             else -> throw IllegalArgumentException("Wrong category")
         }
-
 }
